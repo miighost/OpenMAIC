@@ -5,7 +5,6 @@ import { useRouter } from 'next/navigation';
 import { motion, AnimatePresence } from 'motion/react';
 import {
   ArrowUp,
-  GraduationCap,
   Check,
   ChevronDown,
   Clock,
@@ -450,8 +449,10 @@ function HomePage() {
           classrooms.length === 0 ? 'justify-center min-h-[calc(100dvh-8rem)]' : 'mt-[10vh]',
         )}
       >
-        {/* ── Brand name ── */}
-        <motion.div
+        {/* ── Brand mark ── */}
+        <motion.img
+          src="/logo-horizontal.png"
+          alt="NalaBaro"
           initial={{ opacity: 0, scale: 0.9 }}
           animate={{ opacity: 1, scale: 1 }}
           transition={{
@@ -460,15 +461,8 @@ function HomePage() {
             stiffness: 200,
             damping: 20,
           }}
-          className="mb-2 flex items-center gap-3"
-        >
-          <span className="inline-flex h-10 w-10 md:h-12 md:w-12 items-center justify-center rounded-xl bg-gradient-to-br from-blue-500/15 to-violet-500/20 ring-1 ring-blue-400/30">
-            <GraduationCap className="h-6 w-6 md:h-7 md:w-7 text-blue-500 dark:text-violet-400" />
-          </span>
-          <h1 className="text-4xl md:text-6xl font-semibold tracking-tight bg-gradient-to-r from-blue-500 to-violet-500 bg-clip-text text-transparent">
-            NalaBaro
-          </h1>
-        </motion.div>
+          className="h-12 md:h-16 mb-2 -ml-2 md:-ml-3"
+        />
 
         {/* ── Slogan ── */}
         <motion.p
