@@ -5,6 +5,7 @@ import { useRouter } from 'next/navigation';
 import { motion, AnimatePresence } from 'motion/react';
 import {
   ArrowUp,
+  GraduationCap,
   Check,
   ChevronDown,
   Clock,
@@ -58,7 +59,7 @@ const RECENT_OPEN_STORAGE_KEY = 'recentClassroomsOpen';
 interface FormState {
   pdfFile: File | null;
   requirement: string;
-  language: 'zh-CN' | 'en-US';
+  language: 'zh-CN' | 'en-US' | 'so-SO';
   webSearch: boolean;
 }
 
@@ -101,10 +102,15 @@ function HomePage() {
       const savedLanguage = localStorage.getItem(LANGUAGE_STORAGE_KEY);
       const updates: Partial<FormState> = {};
       if (savedWebSearch === 'true') updates.webSearch = true;
-      if (savedLanguage === 'zh-CN' || savedLanguage === 'en-US') {
+      if (savedLanguage === 'zh-CN' || savedLanguage === 'en-US' || savedLanguage === 'so-SO') {
         updates.language = savedLanguage;
       } else {
-        const detected = navigator.language?.startsWith('zh') ? 'zh-CN' : 'en-US';
+        const navLang = navigator.language?.toLowerCase() || '';
+        const detected = navLang.startsWith('zh')
+          ? 'zh-CN'
+          : navLang.startsWith('so')
+            ? 'so-SO'
+            : 'en-US';
         updates.language = detected;
       }
       if (Object.keys(updates).length > 0) {
@@ -444,10 +450,8 @@ function HomePage() {
           classrooms.length === 0 ? 'justify-center min-h-[calc(100dvh-8rem)]' : 'mt-[10vh]',
         )}
       >
-        {/* ── Logo ── */}
-        <motion.img
-          src="/logo-horizontal.png"
-          alt="OpenMAIC"
+        {/* ── Brand name ── */}
+        <motion.div
           initial={{ opacity: 0, scale: 0.9 }}
           animate={{ opacity: 1, scale: 1 }}
           transition={{
@@ -456,8 +460,15 @@ function HomePage() {
             stiffness: 200,
             damping: 20,
           }}
-          className="h-12 md:h-16 mb-2 -ml-2 md:-ml-3"
-        />
+          className="mb-2 flex items-center gap-3"
+        >
+          <span className="inline-flex h-10 w-10 md:h-12 md:w-12 items-center justify-center rounded-xl bg-gradient-to-br from-blue-500/15 to-violet-500/20 ring-1 ring-blue-400/30">
+            <GraduationCap className="h-6 w-6 md:h-7 md:w-7 text-blue-500 dark:text-violet-400" />
+          </span>
+          <h1 className="text-4xl md:text-6xl font-semibold tracking-tight bg-gradient-to-r from-blue-500 to-violet-500 bg-clip-text text-transparent">
+            NalaBaro
+          </h1>
+        </motion.div>
 
         {/* ── Slogan ── */}
         <motion.p

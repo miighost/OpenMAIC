@@ -28,8 +28,8 @@ const MAX_PDF_SIZE_BYTES = MAX_PDF_SIZE_MB * 1024 * 1024;
 
 // ─── Types ───────────────────────────────────────────────────
 export interface GenerationToolbarProps {
-  language: 'zh-CN' | 'en-US';
-  onLanguageChange: (lang: 'zh-CN' | 'en-US') => void;
+  language: 'zh-CN' | 'en-US' | 'so-SO';
+  onLanguageChange: (lang: 'zh-CN' | 'en-US' | 'so-SO') => void;
   webSearch: boolean;
   onWebSearchChange: (v: boolean) => void;
   onSettingsOpen: (section?: SettingsSection) => void;
@@ -63,6 +63,11 @@ export function GenerationToolbar({
   const setWebSearchProvider = useSettingsStore((s) => s.setWebSearchProvider);
   const fileInputRef = useRef<HTMLInputElement>(null);
   const [isDragging, setIsDragging] = useState(false);
+  const generationLanguages: Array<{ code: 'zh-CN' | 'en-US' | 'so-SO'; label: string }> = [
+    { code: 'zh-CN', label: '中文' },
+    { code: 'en-US', label: 'EN' },
+    { code: 'so-SO', label: 'SO' },
+  ];
 
   // Check if the selected web search provider has a valid config (API key or server-configured)
   const webSearchProvider = WEB_SEARCH_PROVIDERS[webSearchProviderId];
@@ -361,11 +366,15 @@ export function GenerationToolbar({
       <Tooltip>
         <TooltipTrigger asChild>
           <button
-            onClick={() => onLanguageChange(language === 'zh-CN' ? 'en-US' : 'zh-CN')}
+            onClick={() => {
+              const idx = generationLanguages.findIndex((l) => l.code === language);
+              const next = generationLanguages[(idx + 1) % generationLanguages.length];
+              onLanguageChange(next.code);
+            }}
             className={pillMuted}
           >
             <Globe className="size-3.5" />
-            <span>{language === 'zh-CN' ? '中文' : 'EN'}</span>
+            <span>{generationLanguages.find((l) => l.code === language)?.label ?? 'EN'}</span>
           </button>
         </TooltipTrigger>
         <TooltipContent>{t('toolbar.languageHint')}</TooltipContent>
