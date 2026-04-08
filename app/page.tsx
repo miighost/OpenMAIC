@@ -451,7 +451,7 @@ function HomePage() {
       >
         {/* ── Brand mark ── */}
         <motion.img
-          src="/logo-horizontal.png"
+          src="/logo-horizontal-nalabaro.svg"
           alt="NalaBaro"
           initial={{ opacity: 0, scale: 0.9 }}
           animate={{ opacity: 1, scale: 1 }}

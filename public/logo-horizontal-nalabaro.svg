@@ -1,0 +1,22 @@
+<svg width="560" height="120" viewBox="0 0 560 120" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="strokeGrad" x1="0" y1="0" x2="560" y2="120" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#38BDF8"/>
+      <stop offset="1" stop-color="#6366F1"/>
+    </linearGradient>
+    <linearGradient id="textGrad" x1="120" y1="18" x2="520" y2="92" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#1E293B"/>
+      <stop offset="1" stop-color="#4F46E5"/>
+    </linearGradient>
+  </defs>
+  <rect x="2" y="2" width="556" height="116" rx="11" stroke="url(#strokeGrad)" stroke-width="4"/>
+  <g transform="translate(20 21)">
+    <rect x="0" y="0" width="76" height="76" rx="12" fill="#EEF2FF" stroke="url(#strokeGrad)" stroke-width="3"/>
+    <path d="M16 28L38 16L60 28L38 40L16 28Z" fill="#6366F1"/>
+    <path d="M24 36V54L38 62L52 54V36L38 44L24 36Z" fill="#4F46E5"/>
+    <circle cx="38" cy="27" r="4" fill="#312E81"/>
+  </g>
+  <text x="112" y="76" font-family="Inter, Arial, sans-serif" font-size="54" font-weight="700" fill="url(#textGrad)">
+    NalaBaro
+  </text>
+</svg>
