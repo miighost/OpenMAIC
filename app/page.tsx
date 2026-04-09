@@ -474,6 +474,21 @@ function HomePage() {
           {t('home.slogan')}
         </motion.p>
 
+        <motion.div
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ delay: 0.3 }}
+          className="mb-6"
+        >
+          <button
+            type="button"
+            onClick={() => router.push('/admin')}
+            className="text-xs rounded-full border border-slate-300/60 dark:border-slate-700/70 px-3 py-1.5 text-slate-600 dark:text-slate-300 hover:bg-slate-100/70 dark:hover:bg-slate-800/60"
+          >
+            Admin Console
+          </button>
+        </motion.div>
+
         {/* ── Unified input area ── */}
         <motion.div
           initial={{ opacity: 0, scale: 0.97 }}
